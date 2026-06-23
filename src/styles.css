@@ -1937,8 +1937,9 @@ body {
 }
 
 .tendoualice-gradient-circle tendoualice-gradient {
-  width: 75vw;
-  height: 75vh;
+  width: 210%;
+  height: 210%;
+  aspect-ratio: 1 / 1;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -2667,34 +2668,45 @@ select option {
   }
 
   .tendoualice-gradient-circle {
-    width: 20.4rem;
-    height: 20.4rem;
-    top: 50svh;
-    margin: -13.2rem 0 0 -10.2rem;
+    width: min(78vw, 28rem);
+    height: min(78vw, 28rem);
+    top: 45svh;
+    left: 50%;
+    margin: 0;
+    transform: translate3d(-50%, -50%, 0);
   }
 
   .tendoualice-gradient-circle tendoualice-gradient {
-    width: 90vw;
-    height: 60vh;
-    transform: translate3d(-60%, -45%, 0);
+    width: 210%;
+    height: 210%;
+    aspect-ratio: 1 / 1;
+    transform: translate3d(-50%, -50%, 0);
   }
 
   .home-fv {
     min-height: 600px;
+    justify-content: flex-start;
+    padding-top: clamp(13rem, 22svh, 17rem);
   }
 
   .home-kicker {
-    margin-top: -6.5rem;
+    margin-top: 0;
+    margin-bottom: clamp(16rem, 32svh, 23rem);
     padding-top: 0;
-    font-size: 4rem;
+    max-width: 78vw;
+    font-size: clamp(3.4rem, 13.5vw, 4.8rem);
+    line-height: 1.05;
   }
 
   .home-fv h1 {
     position: absolute;
-    bottom: 18%;
-    max-width: 81.33%;
-    font-size: 1.35rem;
-    line-height: 1.3;
+    left: 50%;
+    bottom: clamp(7.2rem, 14svh, 11rem);
+    width: min(84vw, 36rem);
+    max-width: none;
+    transform: translateX(-50%);
+    font-size: clamp(1.2rem, 5.1vw, 1.75rem);
+    line-height: 1.28;
   }
 
   .home-copy {
@@ -2706,11 +2718,12 @@ select option {
   }
 
   .home-symbol {
-    width: 5.2rem;
-    height: 2.6rem;
-    bottom: 13.89%;
+    width: clamp(8.6rem, 32vw, 12.8rem);
+    height: clamp(4.3rem, 16vw, 6.4rem);
+    bottom: clamp(3.2rem, 6.8svh, 5.6rem);
     left: 50%;
     transform: translate3d(-50%, 0, 0);
+    opacity: 0.62;
   }
 
   .home-service {
@@ -4943,5 +4956,85 @@ body::-webkit-scrollbar,
     position: sticky !important;
     top: var(--right-column-sticky-top, 24px) !important;
     align-self: start !important;
+  }
+}
+
+@media (max-width: 820px) {
+  .app-shell--home {
+    --home-mobile-circle-size: min(78vw, 28rem);
+    --home-mobile-circle-center-y: clamp(22.4rem, 45svh, 26.4rem);
+  }
+
+  .app-shell--home .home-fv {
+    min-height: 620px;
+    justify-content: flex-start;
+    padding-top: 0;
+  }
+
+  .app-shell--home .tendoualice-gradient-field > tendoualice-gradient {
+    top: -28svh;
+    right: -36vw;
+    bottom: -20svh;
+    left: -26vw;
+    width: auto;
+    height: auto;
+  }
+
+  .app-shell--home .tendoualice-gradient-circle {
+    width: var(--home-mobile-circle-size);
+    height: var(--home-mobile-circle-size);
+    top: var(--home-mobile-circle-center-y);
+    left: 50%;
+    margin: 0;
+    transform: translate3d(-50%, calc(-50% - var(--tendoualice-circle-parallax, 0px)), 0);
+  }
+
+  .app-shell--home .tendoualice-gradient-circle tendoualice-gradient {
+    width: 210%;
+    height: 210%;
+    aspect-ratio: 1 / 1;
+    transform: translate3d(-60%, -48%, 0);
+  }
+
+  .app-shell--home .home-kicker {
+    position: absolute;
+    top: var(--home-mobile-circle-center-y);
+    left: 0;
+    right: 0;
+    width: min(82vw, 34rem);
+    max-width: none;
+    margin: 0 auto;
+    padding-top: 0;
+    translate: 0 -50%;
+    font-size: clamp(3.25rem, 13vw, 4.8rem);
+    line-height: 1.04;
+  }
+
+  .app-shell--home .home-fv h1 {
+    left: 0;
+    right: 0;
+    bottom: clamp(6.9rem, 13svh, 8.8rem);
+    width: min(86vw, 36rem);
+    margin: 0 auto;
+    transform: none;
+  }
+
+  .app-shell--home .home-symbol {
+    width: clamp(9.8rem, 36vw, 13.6rem);
+    height: clamp(3.62rem, 13.32vw, 5.03rem);
+    bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(2.2rem, 4.6svh, 3.8rem));
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (max-width: 380px) {
+  .app-shell--home .home-fv h1 {
+    font-size: clamp(1.08rem, 4.8vw, 1.34rem);
+  }
+
+  .app-shell--home .home-symbol {
+    width: clamp(8.8rem, 29vw, 10.8rem);
+    height: clamp(3.26rem, 10.73vw, 4rem);
   }
 }

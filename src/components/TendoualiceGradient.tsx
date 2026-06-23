@@ -98,6 +98,7 @@ const fieldConfigs: Record<PageId, GradientConfig> = {
 const circleConfig: GradientConfig = {
   ...fieldConfigs.home,
   colorsize: 0.69,
+  zoom: 1.2,
   seed: 3914.972069975553
 };
 
