@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import type { PageId } from "./types";
 import { Layout } from "./components/Layout";
 import { AngleCalculator } from "./pages/AngleCalculator";
@@ -64,27 +65,30 @@ export function App() {
   };
 
   return (
-    <Layout page={page} onPageChange={goToPage} onVersionLogClick={goToVersionLog} isTransitioning={isTransitioning} transitionTarget={transitionTarget}>
-      {loaderState !== "done" ? (
-        <div id="load" className={`site-loader ${loaderState === "hide" ? "is-leaving" : ""}`} aria-hidden="true">
-          <div className="site-loader__inner">
-            <p className="site-loader__brand">
-              {"AlllXYS".split("").map((letter, index) => (
-                <span key={`${letter}-${index}`} style={{ animationDelay: `${index * 45}ms` }}>
-                  {letter}
-                </span>
-              ))}
-            </p>
-            <span className="site-loader__line" />
+    <>
+      <Layout page={page} onPageChange={goToPage} onVersionLogClick={goToVersionLog} isTransitioning={isTransitioning} transitionTarget={transitionTarget}>
+        {loaderState !== "done" ? (
+          <div id="load" className={`site-loader ${loaderState === "hide" ? "is-leaving" : ""}`} aria-hidden="true">
+            <div className="site-loader__inner">
+              <p className="site-loader__brand">
+                {"AlllXYS".split("").map((letter, index) => (
+                  <span key={`${letter}-${index}`} style={{ animationDelay: `${index * 45}ms` }}>
+                    {letter}
+                  </span>
+                ))}
+              </p>
+              <span className="site-loader__line" />
+            </div>
           </div>
+        ) : null}
+        <div key={page} className={`route-stage route-stage--${page}`}>
+          {page === "home" ? <Home onPageChange={goToPage} /> : null}
+          {page === "ppd" ? <ClarityWorkbench state={state} setState={setState} setPage={goToPage} /> : null}
+          {page === "angle" ? <AngleCalculator state={state} setState={setState} setPage={goToPage} /> : null}
+          {page === "size" ? <SizeComparator state={state} setState={setState} setPage={goToPage} /> : null}
         </div>
-      ) : null}
-      <div key={page} className={`route-stage route-stage--${page}`}>
-        {page === "home" ? <Home onPageChange={goToPage} /> : null}
-        {page === "ppd" ? <ClarityWorkbench state={state} setState={setState} setPage={goToPage} /> : null}
-        {page === "angle" ? <AngleCalculator state={state} setState={setState} setPage={goToPage} /> : null}
-        {page === "size" ? <SizeComparator state={state} setState={setState} setPage={goToPage} /> : null}
-      </div>
-    </Layout>
+      </Layout>
+      <Analytics />
+    </>
   );
 }
