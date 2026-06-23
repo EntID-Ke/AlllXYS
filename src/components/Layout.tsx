@@ -223,7 +223,7 @@ export function Layout({
                   <div className="sns">
                     <ul>
                       <li>
-                        <a href="https://github.com/EntID911/PPDScope" target="_blank" rel="noreferrer">
+                        <a href="https://github.com/EntID-Ke/AlllXYS" target="_blank" rel="noreferrer">
                           GitHub
                         </a>
                       </li>
